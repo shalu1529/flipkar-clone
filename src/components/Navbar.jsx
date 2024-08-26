@@ -55,7 +55,7 @@ import { IoCartOutline } from "react-icons/io5";
 import { CiShop } from "react-icons/ci";
 import { AiOutlineMenu } from "react-icons/ai";
 
-const Header = () => {
+const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
 
   const toggleMenu = () => {
@@ -126,4 +126,4 @@ const Header = () => {
   );
 };
 
-export default Header;
+export default Navbar;
