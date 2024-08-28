@@ -9,6 +9,8 @@ function App() {
 <Navbar/>
 <Home/>
 <Banner/>
+<Products/>
+<Footer/>
     </>
   );
 }
