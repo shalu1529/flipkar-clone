@@ -19,8 +19,6 @@ function App() {
         <Route path="/product/:id" element={ <Singleproduct/> } />
         <Route path="/cart" element={<Cart />} />
 
-        
-  
     </Routes>
     <Footer/>
     </>

@@ -20,7 +20,7 @@ const responsive = {
 
 const Banner = () => {
     return (
-        <div className="mt-4"> 
+        <div className="z-0 mt-4"> 
         <Carousel
             swipeable={false}
             draggable={false}

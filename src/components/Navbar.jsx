@@ -1,5 +1,4 @@
-
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { CiSearch } from "react-icons/ci";
 import { CgProfile } from "react-icons/cg";
@@ -7,23 +6,63 @@ import { IoCartOutline } from "react-icons/io5";
 import { CiShop } from "react-icons/ci";
 import { AiOutlineMenu } from "react-icons/ai";
 import { useSelector } from 'react-redux';
+import SearchResultList from './SearchResultList.jsx';
 
 const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
+  const [input, setInput] = useState("");
+  const [results, setResults] = useState([]);
   const cartItems = useSelector((state) => state.handleCart);
+  const menuRef = useRef();  // Reference for the menu
 
   const toggleMenu = () => {
     setMenuOpen(!menuOpen);
   };
 
+  const fetchData = (value) => {
+    fetch("https://fakestoreapi.com/products")
+      .then((response) => response.json())
+      .then((json) => {
+        const results = json.filter((user) => {
+          return (
+            value &&
+            user &&
+            user.title &&
+            user.title.toLowerCase().includes(value)
+          );
+        });
+        setResults(results);
+      });
+  };
+
+  const handleChange = (value) => {
+    setInput(value);
+    fetchData(value);
+  };
+
+  // Close the menu when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (menuRef.current && !menuRef.current.contains(event.target)) {
+        setMenuOpen(false);
+      }
+    };
+
+    document.addEventListener('click', handleClickOutside);
+    return () => {
+      document.removeEventListener('click', handleClickOutside);
+    };
+  }, []);
+
   return (
-    <div className="bg-white h-[55px] flex items-center justify-between px-4">
+    <div className="bg-white h-[55px] flex items-center justify-between px-4 relative" ref={menuRef}>
       <div className="flex items-center">
         <AiOutlineMenu 
           className="md:hidden mr-2 cursor-pointer"
           size={25} 
           onClick={toggleMenu}
         />
+        <Link to="/">
         <img
           src="https://static-assets-web.flixcart.com/batman-returns/batman-returns/p/images/fkheaderlogo_exploreplus-44005d.svg"
           alt="Flipkart"
@@ -31,14 +70,18 @@ const Navbar = () => {
           height="40"
           title="Flipkart"
         />
+        </Link>
       </div>
       <div className="relative w-[50%] ml-5 hidden md:block">
         <CiSearch className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-500" size={20} />
         <input
           type="text"
           placeholder="Search for Products, Brands and More"
+          value={input}
+          onChange={(e) => handleChange(e.target.value)}
           className="pl-10 p-2 w-full rounded bg-[#f1f3f6] outline-none"
         />
+        <SearchResultList results={results}/>
       </div>
       <div className="ml-auto items-center text-black text-sm font-light mr-28 space-x-8 hidden md:flex">
         <Link to="/login" className="flex items-center cursor-pointer">
@@ -61,14 +104,17 @@ const Navbar = () => {
           <span className="ml-1">Become a Seller</span>
         </Link>
       </div>
-      <div className={`absolute top-[55px] left-0 w-full bg-white shadow-lg p-4 flex flex-col items-start space-y-4 ${menuOpen ? 'block' : 'hidden'} md:hidden`}>
+      <div className={`z-0 absolute top-[55px] left-0 w-full bg-white shadow-lg p-4 flex flex-col items-start space-y-4 ${menuOpen ? 'block' : 'hidden'} md:hidden`} ref={menuRef}>
         <div className="relative w-full">
           <CiSearch className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-500" size={20} />
           <input
             type="text"
             placeholder="Search for Products, Brands and More"
+            value={input}
+            onChange={(e) => handleChange(e.target.value)}
             className="pl-10 p-2 w-full rounded bg-[#f1f3f6] outline-none"
           />
+          <SearchResultList results={results}/>
         </div>
         <Link to="/login" className="flex items-center">
           <CgProfile size={25} />
