@@ -4,20 +4,25 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { BrowserRouter } from 'react-router-dom';
-import {
-  Provider
-} from 'react-redux';
+import { Provider } from 'react-redux';
 import { createStore } from 'redux';
 import reducer from './redux/reducer';
+import { WishlistProvider } from './context/WishlistContext'; // Import WishlistProvider
+import { AuthProvider } from './context/AuthContext';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 const store = createStore(reducer);
+
 root.render(
   <React.StrictMode>
     <Provider store={store}>
-      <BrowserRouter>
-        <App />
-      </BrowserRouter>
+      <WishlistProvider> {/* Wrap the app with WishlistProvider */}
+      <AuthProvider>
+        <BrowserRouter>
+          <App />
+        </BrowserRouter>
+        </AuthProvider>
+      </WishlistProvider>
     </Provider>
   </React.StrictMode>
 );

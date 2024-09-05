@@ -2,6 +2,8 @@ import React from 'react';
 import { navData } from '../data';
 import Banner from './Banner';
 import Products from './Products';
+import Footer from './Footer';
+import Products1 from './Products1'
 
 const Home = () => {
   return (
@@ -16,6 +18,8 @@ const Home = () => {
     </div>
     <Banner/>
     <Products/>
+    <Products1/>
+    <Footer/>
 
     </>
     

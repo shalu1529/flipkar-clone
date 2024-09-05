@@ -9,7 +9,7 @@ import { auth } from '../firebase';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-function Singleproduct() {
+function SingleProduct() {
   const dispatch = useDispatch();
   const { id } = useParams();
   const [product, setProduct] = useState({});
@@ -20,19 +20,37 @@ function Singleproduct() {
 
   useEffect(() => {
     getProduct();
-  }, []);
+  }, [id]);
 
   const getProduct = async () => {
     try {
       setLoading(true);
-      const response = await fetch(`https://fakestoreapi.com/products/${id}`);
+      const response = await fetch(`https://dummyjson.com/products/${id}`);
+      
+      console.log('Response Status:', response.status);
+      console.log('Response URL:', response.url);
+      
+      // Check if response is OK (status 200-299)
       if (!response.ok) {
-        throw new Error(`Failed to fetch product. Status: ${response.status}`);
+        throw new Error(`HTTP error! Status: ${response.status}`);
       }
-      const productData = await response.json();
+
+      // Log the raw response text
+      const text = await response.text();
+      console.log('Response Text:', text);
+
+      // Check if response text is empty or not in JSON format
+      if (!text) {
+        throw new Error('Empty response body');
+      }
+      
+      // Attempt to parse JSON
+      const productData = JSON.parse(text);
+
       setProduct(productData);
     } catch (error) {
       console.error('Error fetching product:', error);
+      toast.error('Failed to fetch product details. Please try again later.');
     } finally {
       setLoading(false);
     }
@@ -87,6 +105,7 @@ function Singleproduct() {
       });
     }
   };
+  
   const isWishlistItem = wishlist.some((item) => item.id === product.id);
 
   const Loading = () => (
@@ -104,7 +123,7 @@ function Singleproduct() {
       <div className="flex flex-col lg:flex-row">
         <div className="lg:w-1/2 flex flex-col items-center mb-6 lg:mb-0 relative ">
           <img
-            src={product.image}
+            src={product.thumbnail} // Updated to use the image field from DummyJSON
             alt={product.title}
             className="rounded-lg shadow-lg p-12"
             style={{ height: '500px', width: '400px' }}
@@ -136,10 +155,10 @@ function Singleproduct() {
           <h4 className="text-sm text-gray-500 uppercase tracking-wider mb-2">{product.category}</h4>
           <h1 className="text-3xl font-semibold mb-3">{product.title}</h1>
           <div className="flex items-center mb-3">
-            <p className="text-lg font-semibold text-gray-700">Rating: {product.rating ? product.rating.rate : 'N/A'}</p>
+            <p className="text-lg font-semibold text-gray-700">Rating: {product.rating || 'N/A'}</p>
             <span className="ml-2 text-yellow-500">★</span>
           </div>
-          <h2 className="text-2xl font-bold text-gray-900 mb-4">${product.price}</h2>
+          <h2 className="text-2xl font-bold text-gray-900 mb-4">₹{product.price}</h2>
           <p className="text-base text-gray-600 leading-relaxed mb-4">{product.description}</p>
         </div>
       </div>
@@ -156,5 +175,4 @@ function Singleproduct() {
   );
 }
 
-export default Singleproduct;
-
+export default SingleProduct;
