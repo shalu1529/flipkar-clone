@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { auth } from '../firebase';
 import { signInWithEmailAndPassword } from "firebase/auth";
-import { useNavigate } from 'react-router-dom';
+import { Link,useNavigate } from 'react-router-dom';
+
 
 const Login = () => {
   const [email, setEmail] = useState('');
@@ -53,9 +54,9 @@ const Login = () => {
             Login
           </button>
           <div className="mt-4 text-center">
-            <a href="/signup" className="text-blue-600 text-sm">
+            <Link to ="/signup" className="text-blue-600 text-sm">
               New to Flipkart? Create an account
-            </a>
+            </Link>
           </div>
         </div>
       </div>
