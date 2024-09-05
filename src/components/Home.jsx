@@ -16,9 +16,9 @@ const Home = () => {
         </div>
       ))}
     </div>
-    <Banner/>
-    <Products/>
-    <Products1/>
+    <Banner/>  {/* render the banner component */}
+    <Products/> {/* fetch the data from fake store Api */}
+    <Products1/> {/* fetch the data from dummyjson Api */}
     <Footer/>
 
     </>

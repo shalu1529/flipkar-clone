@@ -10,9 +10,6 @@ import Cart from './components/Cart';
 import Wishlist from './components/Wishlist';
 
 
-
-
-
 function App() {
   return (
   <>
@@ -21,7 +18,7 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup/>} />
-        <Route path="/product/:id" element={ <Singleproduct/> } />
+        <Route path="/product/:id" element={ <Singleproduct/> } />  {/* path for fetching single product */}
         <Route path="/products/:id" element={ <Singleproduct1/> } />
 
         <Route path="/cart" element={<Cart />} />

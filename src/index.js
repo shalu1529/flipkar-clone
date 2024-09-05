@@ -8,7 +8,7 @@ import { Provider } from 'react-redux';
 import { createStore } from 'redux';
 import reducer from './redux/reducer';
 import { WishlistProvider } from './context/WishlistContext'; // Import WishlistProvider
-import { AuthProvider } from './context/AuthContext';
+import { AuthProvider } from './context/AuthContext';   // Import AuthContext
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 const store = createStore(reducer);
