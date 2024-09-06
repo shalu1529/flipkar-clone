@@ -63,7 +63,7 @@ const Products = () => {
                                     className="rounded border m-4 p-2 w-44 cursor-pointer" 
                                     onClick={() => handleProductClick(product.id)}
                                 > 
-                                    <img className="h-[100px] sm:h-[150px] sm:w-96" src={product.image} alt={product.title} />
+                                    <img className="h-[100px] sm:h-[150px] sm:w-96 object-contain mx-auto" src={product.image} alt={product.title} />
                                     <div className="px-6 py-4">
                                         <div className="text-sm">{product.title.slice(0, 20)}...</div>
                                         <div>&nbsp;&nbsp;&nbsp;&nbsp;₹{product.price}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</div>
@@ -93,7 +93,7 @@ const Products = () => {
                                     className="rounded border m-4 p-2 w-44 cursor-pointer" // Set the box width same as clothing (w-44)
                                     onClick={() => handleProductClick(product.id)}
                                 > 
-                                    <img className="h-[100px] sm:h-[150px] sm:w-96" src={product.image} alt={product.title} />
+                                    <img className="h-[100px] sm:h-[150px] sm:w-96  object-contain mx-auto" src={product.image} alt={product.title} />
                                     <div className="px-6 py-4">
                                         <div className="text-sm">{product.title.slice(0, 20)}...</div>
                                         <div>&nbsp;&nbsp;&nbsp;&nbsp;₹{product.price}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</div>
@@ -112,3 +112,5 @@ const Products = () => {
 }
 
 export default Products;
+
+

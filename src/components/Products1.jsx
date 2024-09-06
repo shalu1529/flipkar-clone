@@ -69,7 +69,7 @@ const Products = () => {
                                         onClick={() => handleProductClick(product.id)}
                                     > 
                                         <img 
-                                            className="h-[100px] sm:h-[150px] sm:w-96" 
+                                            className="h-[100px] sm:h-[150px] sm:w-96 object-contain mx-auto" 
                                             src={product.thumbnail} 
                                             alt={product.title} 
                                             onError={handleError} 
