@@ -131,7 +131,7 @@ function SingleProduct() {
           <button
             onClick={() => handleWishlistClick(product)}
           //   className="absolute top-4 right-4 md:top-4 md:right-2 lg:right-32 lg:top-4 text-3xl z-10"
-          className="absolute top-4 right-4 md:right-8 lg:right-32 xl:right-40 text-3xl z-10"
+          className="absolute top-8 right-2 md:right-6 lg:right-28 xl:right-36 text-3xl z-10"
            >
             {isWishlistItem ? (
               <BiHeartCircle className="text-red-500" />
