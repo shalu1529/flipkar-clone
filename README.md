@@ -38,7 +38,7 @@ To run this project locally, follow these steps:
 
    - Go to the [Firebase Console](https://console.firebase.google.com/) and create a new project.
    - Generate a new Web App and copy the Firebase configuration.
-   - 
+     
 4. **Run the development server**:
 
     ```bash
