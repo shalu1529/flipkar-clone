@@ -49,9 +49,7 @@ To run this project locally, follow these steps:
 
 - **Browse Products**: Navigate through different categories and view detailed product pages.
 - **Add to Cart/Wishlist**: Add products to your cart or wishlist for easy purchase.
-- **User Authentication**: Register or log in using email and password or third-party services (Google).
-- **Manage Profile**: View and update profile details, addresses, and order history.
-    The app will be available at `http://localhost:3000`.
+- **User Authentication**: Register or log in using email and password.
 
 ## Acknowledgments
 
