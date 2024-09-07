@@ -55,3 +55,6 @@ To run this project locally, follow these steps:
 
 - Inspired by the Flipkart E-Commerce platform.
 - Built with love using React, Tailwind CSS, Redux, and Firebase.
+
+## LiveLink
+https://cloneofflipkrt.netlify.app/  
