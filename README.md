@@ -25,7 +25,7 @@ To run this project locally, follow these steps:
 1. **Clone the repository**:
 
     ```bash
-    git clone [https://github.com/yourusername/flipkart-clone.git](https://github.com/shalu1529/flipkar-clone.git)
+    git clone https://github.com/shalu1529/flipkar-clone.git
     cd flipkart-clone
     ```
 2. **Install dependencies**:
